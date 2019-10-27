@@ -14,12 +14,14 @@ hidden_nodes = 100
 output_nodes = 10
 learning_rate = 0.3
 
-neural_network = NeuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
+neural_network = NeuralNetwork(input_nodes, hidden_nodes, output_nodes)
 neural_network.InitWeights('Normal')
 neural_network.InitActivation('Sigmoid')
+neural_network.SetLearningRate(learning_rate)
 
 data_preparer.Read(file_name)
 count = data_preparer.GetCount()
+
 
 for x in range(count):
 	input = data_preparer.PrepareInput(x)
@@ -32,4 +34,4 @@ for x in range(count):
 	if (x + 1) % 1000 == 0:
 		print(str(x + 1) + "/" + str(count))
 
-SaveObject(neural_network, "./Data/NeuralNetwork.pkl")
+SaveObject(neural_network, "./Data/NeuralNetwork1.pkl")

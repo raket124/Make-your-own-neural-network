@@ -2,11 +2,12 @@ import numpy as np
 import scipy.special
 
 class NeuralNetwork:
-	def __init__(self, input_nodes, hidden_nodes, output_nodes, learning_rate):
+	def __init__(self, input_nodes, hidden_nodes, output_nodes):
 		self.input_nodes = input_nodes
 		self.hidden_nodes = hidden_nodes
 		self.output_nodes = output_nodes
 
+	def SetLearningRate(self, learning_rate):
 		self.learning_rate = learning_rate
 
 	def InitWeights(self, algorithm):

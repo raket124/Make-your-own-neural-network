@@ -29,5 +29,3 @@ for x in range(count):
 		score[x] = 1
 
 print(score.sum() / count)
-
-# plt.imsave(str(x) + '.png', img, cmap='gray')
