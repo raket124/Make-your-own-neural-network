@@ -9,14 +9,13 @@ data_folder = "./Data/"
 file_name = "mnist_test.csv"
 data_preparer = DataPreparer(data_folder)
 
-neural_network = LoadObject("./Data/NeuralNetwork.pkl")
+neural_network = LoadObject("./Data/NeuralNetwork_1.pkl")
 
 data_preparer.Read(file_name)
-count = data_preparer.GetCount()
+record_count = data_preparer.GetCount()
 
-score = np.zeros(count)
-
-for x in range(count):
+score = 0
+for x in range(record_count):
 	input = data_preparer.PrepareInput(x)
 	output = data_preparer.PrepareOutput(x)
 
@@ -26,6 +25,6 @@ for x in range(count):
 	result_label = np.argmax(result)
 
 	if(expected_label == result_label):
-		score[x] = 1
+		score += 1
 
-print(score.sum() / count)
+print("Result " + str(score / record_count))

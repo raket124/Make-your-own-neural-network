@@ -34,4 +34,4 @@ for x in range(count):
 	if (x + 1) % 1000 == 0:
 		print(str(x + 1) + "/" + str(count))
 
-SaveObject(neural_network, "./Data/NeuralNetwork1.pkl")
+SaveObject(neural_network, "./Data/NeuralNetwork_1.pkl")
