@@ -12,14 +12,14 @@ data_preparer = DataPreparer(data_folder)
 data_preparer.Read(file_name)
 record_count = data_preparer.GetCount()
 
-learning_rates = [0.01, 0.05, 0.08, 0.1, 0.12, 0.15, 0.18, 0.2, 0.3, 0.5, 0.7, 1]
-learning_rate_count = len(learning_rates);
-scores = np.zeros(learning_rate_count)
+epochs = np.array([1, 2, 3, 4, 5, 7, 10, 15, 20])
+epochs_count = len(epochs);
+scores = np.zeros(epochs_count)
 
-print("Learning rate : Score")
-for lr in range(learning_rate_count):
-	learning_rate = learning_rates[lr]
-	neural_network = LoadObject("./Data/NeuralNetwork_2_" + str(learning_rate) + ".pkl")
+print("Epochs : Score")
+for ep in range(epochs_count):
+	epoch = epochs[ep]
+	neural_network = LoadObject("./Data/NeuralNetwork_3_" + str(epoch) + ".pkl")
 	score = 0
 
 	for x in range(record_count):
@@ -34,16 +34,16 @@ for lr in range(learning_rate_count):
 		if(expected_label == result_label):
 			score += 1
 
-	scores[lr] = score / record_count
-	print(str(learning_rate) + " : " + str(scores[lr]))
+	scores[ep] = score / record_count
+	print(str(epoch) + " : " + str(scores[ep]))
 
-xmax = learning_rates[scores.argmax()]
+xmax = epochs[scores.argmax()]
 ymax = scores.max()
 
-plt.plot(learning_rates, scores, 'Blue', zorder=1)
+plt.plot(epochs, scores, 'Blue', zorder=1)
 dot = plt.scatter(xmax, ymax, s=None, c='Black', zorder=2)
-plt.title('Learning rate experiment')
-plt.xlabel('Learning rate')
+plt.title('Epochs experiment')
+plt.xlabel('Epochs')
 plt.ylabel('Score')
-plt.legend([dot], ['Best result\nLearning rate: {:.2f}\nScore: {:.2f}'.format(xmax, ymax)])
-plt.savefig('Output/LearningRate.png')
+plt.legend([dot], ['Best result\nEpoch: {:}\nScore: {:.2f}'.format(xmax, ymax)])
+plt.savefig('Output/Epoch.png')

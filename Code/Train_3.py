@@ -12,19 +12,19 @@ data_preparer = DataPreparer(data_folder)
 input_nodes = 784
 hidden_nodes = 100
 output_nodes = 10
-learning_rates = np.array([0.01, 0.05, 0.08, 0.1, 0.12, 0.15, 0.18, 0.2, 0.3, 0.5, 0.7, 1])
+learning_rate = 0.1
+epochs = np.array([1, 2, 3, 4, 5, 7, 10, 15, 20])
 
 neural_network = NeuralNetwork(input_nodes, hidden_nodes, output_nodes)
+neural_network.InitWeights('Normal')
 neural_network.InitActivation('Sigmoid')
+neural_network.SetLearningRate(learning_rate)
 
 data_preparer.Read(file_name)
 count = data_preparer.GetCount()
 
-for lr in learning_rates:
-    neural_network.InitWeights('Normal')
-    neural_network.SetLearningRate(lr)
-    print("Learning rate " + str(lr))
-
+for epoch in range(1, epochs.max() + 1):
+    print("Epoch " + str(epoch))
     for x in range(count):
     	input = data_preparer.PrepareInput(x)
     	output = data_preparer.PrepareOutput(x)
@@ -36,4 +36,5 @@ for lr in learning_rates:
     	if (x + 1) % 1000 == 0:
     		print(str(x + 1) + "/" + str(count))
 
-    SaveObject(neural_network, "./Data/NeuralNetwork_2_" + str(lr) + ".pkl")
+    if np.isin(epoch, epochs):
+        SaveObject(neural_network, "./Data/NeuralNetwork_3_" + str(epoch) + ".pkl")
