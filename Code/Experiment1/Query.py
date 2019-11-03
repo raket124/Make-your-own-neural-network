@@ -1,30 +1,23 @@
 import numpy as np
-import matplotlib.pyplot as plt
-from Utils import LoadObject
+import Utils as utils
 
-from NeuralNetwork import NeuralNetwork
-from DataPreparer import DataPreparer
+def Query(data_preparer, debugInfo):
+	neural_network = utils.LoadObject("./Experiment1/Data/NeuralNetwork.pkl")
+	record_count = data_preparer.GetCount()
 
-data_folder = "./Data/"
-file_name = "mnist_test.csv"
-data_preparer = DataPreparer(data_folder)
+	score = 0
+	for x in range(record_count):
+		input = data_preparer.PrepareInput(x)
+		output = data_preparer.PrepareOutput(x)
+		result = neural_network.Query(input)
 
-neural_network = LoadObject("./Data/NeuralNetwork_1.pkl")
+		expected_label = data_preparer.PrepareOutputLabel(x)
+		result_label = np.argmax(result)
+		if(expected_label == result_label):
+			score += 1
 
-data_preparer.Read(file_name)
-record_count = data_preparer.GetCount()
+		if debugInfo:
+			utils.PrintDebugInfo(x, record_count)
 
-score = 0
-for x in range(record_count):
-	input = data_preparer.PrepareInput(x)
-	output = data_preparer.PrepareOutput(x)
-
-	result = neural_network.Query(input)
-
-	expected_label = data_preparer.PrepareOutputLabel(x)
-	result_label = np.argmax(result)
-
-	if(expected_label == result_label):
-		score += 1
-
-print("Result " + str(score / record_count))
+	scores = np.array([score / record_count])
+	utils.SaveObject(score, "./Experiment1/Data/Scores.pkl")

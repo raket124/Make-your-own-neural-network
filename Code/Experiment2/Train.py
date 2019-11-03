@@ -1,39 +1,23 @@
 import numpy as np
-import matplotlib.pyplot as plt
-from Utils import SaveObject
+import Utils as utils
 
-from NeuralNetwork import NeuralNetwork
-from DataPreparer import DataPreparer
+def Train(data_preparer, neural_network, debugInfo):
+    learning_rates = np.array([0.01, 0.05, 0.08, 0.1, 0.12, 0.15, 0.18, 0.2, 0.3, 0.5, 0.7, 1])
+    record_count = data_preparer.GetCount()
 
-data_folder = "./Data/"
-file_name = "mnist_train.csv"
-data_preparer = DataPreparer(data_folder)
+    for lr in learning_rates:
+        neural_network.InitWeights('Normal')
+        neural_network.SetLearningRate(lr)
 
-input_nodes = 784
-hidden_nodes = 100
-output_nodes = 10
-learning_rates = np.array([0.01, 0.05, 0.08, 0.1, 0.12, 0.15, 0.18, 0.2, 0.3, 0.5, 0.7, 1])
+        if debugInfo:
+            print("Learning rate: " + str(lr))
 
-neural_network = NeuralNetwork(input_nodes, hidden_nodes, output_nodes)
-neural_network.InitActivation('Sigmoid')
+        for x in range(record_count):
+            input = data_preparer.PrepareInput(x)
+            output = data_preparer.PrepareOutput(x)
+            neural_network.Train(input, output)
 
-data_preparer.Read(file_name)
-count = data_preparer.GetCount()
+            if debugInfo:
+                utils.PrintDebugInfo(x, record_count)
 
-for lr in learning_rates:
-    neural_network.InitWeights('Normal')
-    neural_network.SetLearningRate(lr)
-    print("Learning rate " + str(lr))
-
-    for x in range(count):
-    	input = data_preparer.PrepareInput(x)
-    	output = data_preparer.PrepareOutput(x)
-
-    	neural_network.Train(input, output)
-
-    	if x == 0:
-    		print(str(0) + "/" + str(count))
-    	if (x + 1) % 1000 == 0:
-    		print(str(x + 1) + "/" + str(count))
-
-    SaveObject(neural_network, "./Data/NeuralNetwork_2_" + str(lr) + ".pkl")
+        utils.SaveObject(neural_network, "./Experiment2/Data/NeuralNetwork_" + str(lr) + ".pkl")

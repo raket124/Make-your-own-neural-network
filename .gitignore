@@ -52,6 +52,3 @@ doc/
 
 # Box storage for spec
 test/vagrant-spec/boxes/*.box
-
-# Data
-Code/Data/*
