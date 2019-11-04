@@ -16,8 +16,4 @@ def Query(data_preparer, debugInfo):
 		if(expected_label == result_label):
 			score += 1
 
-		if debugInfo:
-			utils.PrintDebugInfo(x, record_count)
-
-	scores = np.array([score / record_count])
-	utils.SaveObject(score, "./Experiment1/Data/Scores.pkl")
+	utils.SaveObject(float(score / record_count), "./Experiment1/Data/Scores.pkl")
