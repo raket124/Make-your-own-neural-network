@@ -10,6 +10,9 @@ from Experiment1.Result import Result as Result_1
 from Experiment2.Train import Train as Train_2
 from Experiment2.Query import Query as Query_2
 from Experiment2.Result import Result as Result_2
+from Experiment3.Train import Train as Train_3
+from Experiment3.Query import Query as Query_3
+from Experiment3.Result import Result as Result_3
 
 parser = argparse.ArgumentParser()
 parser.add_argument('Experiment', type=int, choices=range(1, 6))
@@ -23,7 +26,10 @@ actions = {
     (1, Options.Result) : Result_1,
     (2, Options.Train) : Train_2,
     (2, Options.Query) : Query_2,
-    (2, Options.Result) : Result_2
+    (2, Options.Result) : Result_2,
+    (3, Options.Train) : Train_3,
+    (3, Options.Query) : Query_3,
+    (3, Options.Result) : Result_3
 }
 
 data_folder = "./Data/"

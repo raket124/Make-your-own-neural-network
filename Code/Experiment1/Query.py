@@ -3,17 +3,7 @@ import Utils as utils
 
 def Query(data_preparer, debugInfo):
 	neural_network = utils.LoadObject("./Experiment1/Data/NeuralNetwork.pkl")
-	record_count = data_preparer.GetCount()
 
-	score = 0
-	for x in range(record_count):
-		input = data_preparer.PrepareInput(x)
-		output = data_preparer.PrepareOutput(x)
-		result = neural_network.Query(input)
+	score = utils.DoQueryRun(data_preparer, neural_network, debugInfo)
 
-		expected_label = data_preparer.PrepareOutputLabel(x)
-		result_label = np.argmax(result)
-		if(expected_label == result_label):
-			score += 1
-
-	utils.SaveObject(float(score / record_count), "./Experiment1/Data/Scores.pkl")
+	utils.SaveObject(score, "./Experiment1/Data/Scores.pkl")
