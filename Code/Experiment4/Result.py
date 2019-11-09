@@ -23,9 +23,9 @@ def Result():
     ax.set_zlabel('Score')
 
     max_index = np.unravel_index(scores.argmax(), scores.shape)
-    xmax = max_index[0]
+    xmax = max_index[0] + 1
     ymax = learning_rates[max_index[1]]
-    zmax = scores[xmax, max_index[1]]
+    zmax = scores[max_index[0], max_index[1]]
 
     dot = ax.scatter(ymax, xmax, zmax, c='Black')
     plt.legend([dot], ['Best result\nLearning rate: {:.3f}\nEpoch: {:}\nScore: {:.2f}'.format(ymax, xmax, zmax)], loc='upper right')

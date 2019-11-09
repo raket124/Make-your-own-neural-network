@@ -6,4 +6,4 @@ def Query(data_preparer, debugInfo):
 
 	score = utils.DoQueryRun(data_preparer, neural_network, debugInfo)
 
-	utils.SaveObject(score, "./Experiment1/Data/Scores.pkl")
+	utils.SaveObject(score, "./Experiment1/Data/Score.pkl")
