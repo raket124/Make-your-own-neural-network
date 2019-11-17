@@ -34,6 +34,7 @@ While a high learning rate will cause the neural network to overshoot a generic 
 This is reflected in the graph below, as the smallest learning rate only achieves a score of 91%.
 While the larger learning rates cause the score to deteriorate even more.
 The optimal learning rate during this run seems to be 0.18.
+
 ![lr]
 
 ### Experiment 3 - Training multiple rounds
@@ -42,6 +43,7 @@ The expected behaviour is that the score will increase up until it starts to ove
 The goal of the neural network is to achieve a generic answer, not to memorize the training data.
 The graph below shows this as the score increases after each succesive epoch.
 But after only 5 epochs the score starts to deteriorate slowly, indicating that the neural network is overfitting the training data.
+
 ![ep]
 
 ### Experiment 4 - Learning rates vs Epochs
@@ -53,7 +55,6 @@ Showing that the neural network cannot achieve a more generic answer with these 
 - The smallest learning rate of 0.025 is able to achieve the highest score out of all learning rates, 
 but requires many epochs before achieving this score.
 
-
 ![lrep]
 
 ### Experiment 5 - Inverse query (estimation)
@@ -61,11 +62,20 @@ The fifth and last experiment is an attempt at visualizing the neural network.
 Since the dot product which is used in the neural network isn't inversible the exact result can not be determined.
 Because of this an estimation is used based on a weighted response of the input nodes.
 
+![est0] ![est1] ![est2] ![est3] ![est4] ![est5] ![est6] ![est7] ![est8] ![est9]
+ 
 [lr]: https://github.com/raket124/Make-your-own-neural-network/blob/master/Code/Output/LearningRate.png "Learning rate plot"
 [ep]: https://github.com/raket124/Make-your-own-neural-network/blob/master/Code/Output/Epoch.png "Epoch plot"
 [lrep]: https://github.com/raket124/Make-your-own-neural-network/blob/master/Code/Output/EpochAndLearningRate.gif "Epoch vs learning rate plot"
-
-
-
+[est0]: https://github.com/raket124/Make-your-own-neural-network/blob/master/Code/Output/Estimations/0.png
+[est1]: https://github.com/raket124/Make-your-own-neural-network/blob/master/Code/Output/Estimations/1.png
+[est2]: https://github.com/raket124/Make-your-own-neural-network/blob/master/Code/Output/Estimations/2.png
+[est3]: https://github.com/raket124/Make-your-own-neural-network/blob/master/Code/Output/Estimations/3.png
+[est4]: https://github.com/raket124/Make-your-own-neural-network/blob/master/Code/Output/Estimations/4.png
+[est5]: https://github.com/raket124/Make-your-own-neural-network/blob/master/Code/Output/Estimations/5.png
+[est6]: https://github.com/raket124/Make-your-own-neural-network/blob/master/Code/Output/Estimations/6.png
+[est7]: https://github.com/raket124/Make-your-own-neural-network/blob/master/Code/Output/Estimations/7.png
+[est8]: https://github.com/raket124/Make-your-own-neural-network/blob/master/Code/Output/Estimations/8.png
+[est9]: https://github.com/raket124/Make-your-own-neural-network/blob/master/Code/Output/Estimations/9.png
 
 
