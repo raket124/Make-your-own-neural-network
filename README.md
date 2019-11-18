@@ -54,6 +54,8 @@ This will reiterate the results from the previous experiments with more data and
 Showing that the neural network cannot achieve a more generic answer with these settings.
 - The smallest learning rate of 0.025 is able to achieve the highest score out of all learning rates, 
 but requires many epochs before achieving this score.
+- Improving the highest score of 97.3% with only these two paramters is still possible.
+Judging from the gain, their is still room for improvement by lowering the learning rate and increasing the amount of epochs 
 
 ![lrep]
 
@@ -61,8 +63,11 @@ but requires many epochs before achieving this score.
 The fifth and last experiment is an attempt at visualizing the neural network.
 Since the dot product which is used in the neural network isn't inversible the exact result can not be determined.
 Because of this an estimation is used based on a weighted response of the input nodes.
+The following ten images show the response of the best neural network for each individual result.
+Some show a resemblence to the actual value but most leave it to the imagination.
 
 ![est0] ![est1] ![est2] ![est3] ![est4] ![est5] ![est6] ![est7] ![est8] ![est9]
+ (0 - 9)
  
 [lr]: https://github.com/raket124/Make-your-own-neural-network/blob/master/Code/Output/LearningRate.png "Learning rate plot"
 [ep]: https://github.com/raket124/Make-your-own-neural-network/blob/master/Code/Output/Epoch.png "Epoch plot"
